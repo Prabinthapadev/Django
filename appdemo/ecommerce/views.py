@@ -45,3 +45,7 @@ def signup(request):
             })
 
     return render(request,'ecommerce/signup.html')
+
+def logout(request):
+    request.session.flush()
+    return redirect('login')
