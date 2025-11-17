@@ -15,7 +15,9 @@
         <input type="submit" name="" id="" value="Login">
     </form>
     {%if error_msg %}
-    <h1>{{error_msg}}</h1>
+    <p style="color:red">{{error_msg}}</p>
     {% endif %}
+
+    <p>Don't have an account <a href="{% url 'signup' %}">Signup here</a> </p>
 </body>
 </html>
