@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Your cart</h1>
+{% if cart_items %}
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Product ID</th>
+        <th>Quantity</th>
+    </tr>
+    {% for pid,qnt in cart_items.items %}
+    <tr>
+        <td>{{ pid }}</td>
+        <td>{{ qnt }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+
+
+{% endblock %}

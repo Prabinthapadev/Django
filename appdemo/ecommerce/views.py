@@ -9,7 +9,7 @@ def home(request):
         "username":username,
         "password":password,
     }
-    return render(request,'ecommerce/home.html',user_info)
+    return render(request,'home.html',user_info)
 
 def login(request):
     if request.method == 'POST':
@@ -23,11 +23,11 @@ def login(request):
 
             return redirect('home')
         else:
-            return render(request,'ecommerce/login.html',{
+            return render(request,'login.html',{
                 "error_msg":"Details didn't matched.",
                 })
         
-    return render(request,'ecommerce/login.html')
+    return render(request,'login.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -40,12 +40,43 @@ def signup(request):
             User.objects.create(username = username,password = password)
             return redirect('login')
         else:
-            return render(request,'ecommerce/signup.html',{
+            return render(request,'signup.html',{
                 "error_msg":"Details didnot matched",
             })
 
-    return render(request,'ecommerce/signup.html')
+    return render(request,'signup.html')
 
 def logout(request):
     request.session.flush()
     return redirect('login')
+
+# Now from here code for add_to_cart button
+
+def product_list(request):
+    return render(request,'product_list.html',{
+        "cart_count":get_cart_count(request),
+    })
+
+def add_to_cart(request,product_id):
+    cart = request.session.get('cart')
+
+    if cart is None:
+        cart = {}
+        product_id = str(product_id)
+    if product_id in cart:
+        cart[product_id]+=1
+    else:
+        cart[product_id]= 1
+    request.session['cart'] = cart
+    return redirect('product_list')
+
+def get_cart_count(request):
+    cart = request.session.get('cart',{})
+    return sum(cart.values())
+
+def cart_page(request):
+    cart = request.session.get('cart',{})
+    return render(request,'cart.html',{
+        "cart_items":cart,
+        "cart_count":get_cart_count(request),
+    })

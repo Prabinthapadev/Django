@@ -12,5 +12,5 @@ function validateSignup()
 
 
     if(username.value.trim()==" ")
-        username.
+    {}
 }
