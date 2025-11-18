@@ -1,28 +1,15 @@
+{% extends 'base.html' %}
 
-   {% extends 'base.html' %}
+{% block content %}
+<h1>Product List</h1>
+{% for product in products %}
+<div>
+    <h3>{{ product.name }}</h3>
+    <p>${{ product.price }}</p>
+    <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+</div>
+<hr>
+{% endfor %}
 
-   {% block content %}
-   <h1>Product List</h1>
-    <div>
-        <h3>Bhagwat geeta</h3>
-        <p>$ 5</p>
-        <a href="{% url 'add_to_cart' 1 %}">Add to Cart</a>
-    </div>
-    <hr>
-    <div>
-        <h3>Bhagwatam</h3>
-        <p>$ 10</p>
-        <a href="{% url 'add_to_cart' 2 %}">Add to Cart</a>
-    </div>
-    <hr>
-    <div>
-        <h3>Chitanya Charitamrit</h3>
-        <p>$ 10</p>
-        <a href="{% url 'add_to_cart' 2 %}">Add to Cart</a>
-    </div>
-    <hr>
-    {% if cart %}
-   <h1> <a href="{% url 'view_cart_details' %}">View Cart</a> </h1>
-    {% endif %}
-
-    {% endblock %}
+<a href="{% url 'cart_page' %}">View Cart ({{ cart_count }})</a>
+{% endblock %}
