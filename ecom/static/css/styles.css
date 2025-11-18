@@ -10,6 +10,34 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ .footer-black {
+    background: #000;
+}
+
+.footer-social a {
+    color: #fff;
+    font-size: 22px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #4cc9f0;
+    transform: translateY(-4px);
+}
+
+.footer-info {
+    color: #ccc;
+    font-size: 14px;
+}
+
+.footer-copy {
+    color: #777;
+    font-size: 13px;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
